@@ -17,11 +17,33 @@ QSize RenderArea::sizeHint() const {
 
 }
 void RenderArea::paintEvent(QPaintEvent *event )  {
+    Q_UNUSED(event);
     QPainter painter(this);
-    painter.setBrush(mBackgroundColor);
     painter.setRenderHint(QPainter::Antialiasing , true);
+
+    switch (mShape) {
+    case Astroid:
+        mBackgroundColor = Qt::red;
+
+        break;
+    case Cycloid:
+        mBackgroundColor = Qt::blue;
+        break;
+    case HuygensCycloid:
+        mBackgroundColor = Qt::green;
+        break;
+    case HypoCycloid:
+        mBackgroundColor = Qt::gray;
+        break;
+    default:
+        break;
+    }
+    painter.setBrush(mBackgroundColor);
+    painter.setPen(mShapeColor);
+
     painter.drawRect(this->rect());
     painter.drawLine(this->rect().topLeft() ,this->rect().bottomRight() );
+
 
 
 }

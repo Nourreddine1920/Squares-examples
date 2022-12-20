@@ -19,7 +19,8 @@ void MainWindow::on_btnAstroid_clicked()
     // change background color for render area
     // but how to do this ?
     // add a function to change the background .
-    this->ui->renderArea->setBackgroundColor(Qt::red);
+    this->ui->renderArea->setShape(RenderArea::Astroid);
+
     this->ui->renderArea->repaint();
 
 }
@@ -27,7 +28,8 @@ void MainWindow::on_btnAstroid_clicked()
 
 void MainWindow::on_btnCycloid_clicked()
 {
-    this->ui->renderArea->setBackgroundColor(Qt::green);
+    this->ui->renderArea->setShape(RenderArea::Cycloid);
+
     this->ui->renderArea->repaint();
 
 
@@ -36,7 +38,8 @@ void MainWindow::on_btnCycloid_clicked()
 
 void MainWindow::on_btnHuygens_clicked()
 {
-    this->ui->renderArea->setBackgroundColor(Qt::blue);
+     this->ui->renderArea->setShape(RenderArea::HuygensCycloid);
+
     this->ui->renderArea->repaint();
 
 }
@@ -44,7 +47,8 @@ void MainWindow::on_btnHuygens_clicked()
 
 void MainWindow::on_btnHypo_clicked()
 {
-    this->ui->renderArea->setBackgroundColor(Qt::gray);
+    this->ui->renderArea->setShape(RenderArea::HypoCycloid);
+
     this->ui->renderArea->repaint();
 
 }
