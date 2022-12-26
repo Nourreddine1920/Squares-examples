@@ -58,7 +58,8 @@ void RenderArea::paintEvent(QPaintEvent *event )  {
     painter.setPen(mShapeColor);
 
     painter.drawRect(this->rect());
-    int StepCount = 64 ;
+    QPoint center = this->rect().center();
+    int StepCount = 256 ;
     int scale = 40 ;
 
     float intervalLength = 2 * M_PI ;
@@ -66,8 +67,9 @@ void RenderArea::paintEvent(QPaintEvent *event )  {
     for (float t =0 ; t < intervalLength; t+= step){
         QPointF point = compute_astroid(t);
         QPoint pixel ;
-        pixel.setX(point.x() * scale);
-        pixel.setX(point.y() * scale);
+        pixel.setX(point.x() * scale + center.x());
+        pixel.setX(point.y() * scale + center.y());
+        painter.drawPoint(pixel);
     }
 
 
