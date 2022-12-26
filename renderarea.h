@@ -20,6 +20,7 @@ public:
     } //getter
     void setShape(ShapeType shape){
         mShape = shape ;
+        on_shape_changed();
     } //setter
     ShapeType shape() const {
         return mShape ;
@@ -29,10 +30,15 @@ protected:
     void paintEvent(QPaintEvent *event ) Q_DECL_OVERRIDE ;
 
 private:
+    void on_shape_changed();
     QColor mBackgroundColor ;
     QColor mShapeColor ;
     ShapeType mShape;
     QPointF compute_astroid(float f);
+    float mIntervalLength ;
+    float mStep ;
+    int mScale ;
+    int mStepCount;
 
 
 signals:

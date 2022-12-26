@@ -2,11 +2,18 @@
 #include <QPaintEvent>
 #include <QPainter>
 #include <QPointF>
+#include <math.h>
 
 RenderArea::RenderArea(QWidget *parent)
-    : QWidget{parent} , mBackgroundColor(0 , 0, 255) , mShapeColor(255 , 255 , 255)
+    : QWidget{parent} ,
+      mBackgroundColor(0 , 0, 255) ,
+      mShapeColor(255 , 255 , 255) ,
+      mShape (Astroid)
 {
-    this->setStyleSheet("background-color:blue;");
+
+
+    on_shape_changed();
+
 
 }
 QSize RenderArea::minimumSizeHint() const {
@@ -18,6 +25,28 @@ QSize RenderArea::sizeHint() const {
 
 }
 
+void RenderArea::on_shape_changed(){
+    switch (mShape) {
+    case Astroid:
+        mScale=40;
+        mIntervalLength = 2 * M_PI ;
+        mStepCount = 256;
+
+        break;
+    case Cycloid:
+
+        break;
+    case HuygensCycloid:
+
+        break;
+    case HypoCycloid:
+
+        break;
+    default:
+        break;
+    }
+
+}
 QPointF RenderArea::compute_astroid(float t){
 
     // we will compute the astroid function here
@@ -37,38 +66,19 @@ void RenderArea::paintEvent(QPaintEvent *event )  {
     QPainter painter(this);
     painter.setRenderHint(QPainter::Antialiasing , true);
 
-    switch (mShape) {
-    case Astroid:
-        mBackgroundColor = Qt::red;
 
-        break;
-    case Cycloid:
-        mBackgroundColor = Qt::blue;
-        break;
-    case HuygensCycloid:
-        mBackgroundColor = Qt::green;
-        break;
-    case HypoCycloid:
-        mBackgroundColor = Qt::gray;
-        break;
-    default:
-        break;
-    }
     painter.setBrush(mBackgroundColor);
     painter.setPen(mShapeColor);
 
     painter.drawRect(this->rect());
     QPoint center = this->rect().center();
-    int StepCount = 256 ;
-    int scale = 40 ;
 
-    float intervalLength = 2 * M_PI ;
-    float step = intervalLength / StepCount ;
-    for (float t =0 ; t < intervalLength; t+= step){
+    float step = mIntervalLength / mStepCount ;
+    for (float t =0 ; t < mIntervalLength; t+= step){
         QPointF point = compute_astroid(t);
         QPoint pixel ;
-        pixel.setX(point.x() * scale + center.x());
-        pixel.setX(point.y() * scale + center.y());
+        pixel.setX(point.x() * mScale + center.x());
+        pixel.setY(point.y() * mScale + center.y());
         painter.drawPoint(pixel);
     }
 
