@@ -11,7 +11,7 @@ public:
     explicit RenderArea(QWidget *parent = nullptr);
     QSize minimumSizeHint() const Q_DECL_OVERRIDE;
     QSize sizeHint() const Q_DECL_OVERRIDE;
-    enum ShapeType {Astroid , Cycloid , HuygensCycloid , HypoCycloid , FutureCurve};
+    enum ShapeType {Astroid , Cycloid , HuygensCycloid , HypoCycloid , Line};
     void setBackgroundColor(QColor color){
         mBackgroundColor=  color ; //setter
     }
@@ -39,7 +39,8 @@ private:
     QPointF compute_cycloid(float t);
     QPointF compute_hygens(float t);
     QPointF compute_hypo(float t);
-    QPointF compute_future_curve(float t);
+    QPointF compute_line(float t);
+
 
     float mIntervalLength ;
     float mStep ;

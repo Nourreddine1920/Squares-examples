@@ -41,8 +41,8 @@ QPointF RenderArea::compute(float t ){
         return compute_hypo(t) ;
 
         break;
-    case FutureCurve:
-        return compute_future_curve(t) ;
+    case Line:
+        return compute_line(t) ;
     default:
         break;
     }
@@ -67,7 +67,8 @@ QPointF RenderArea::compute_hypo(float t){
                    1.5 * (2 * sin(t) - sin(2 * t)));
 
 }
-QPointF RenderArea::compute_future_curve(float t){
+QPointF RenderArea::compute_line(float t){
+    return QPointF(1-t , 1-t);
 
 }
 
@@ -97,7 +98,10 @@ void RenderArea::on_shape_changed(){
         mStepCount = 256;
 
         break;
-    case FutureCurve :
+    case Line :
+        mScale=50;
+        mIntervalLength =1 ;
+        mStepCount = 128;
         break;
     default:
         break;
