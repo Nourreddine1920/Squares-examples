@@ -24,6 +24,44 @@ QSize RenderArea::sizeHint() const {
     return QSize(400 , 200);
 
 }
+QPointF RenderArea::compute(float t ){
+    switch (mShape) {
+    case Astroid:
+        return compute_astroid(t);
+        break;
+    case Cycloid:
+        return compute_cycloid(t);
+
+        break;
+    case HuygensCycloid:
+        return compute_hygens(t);
+
+        break;
+    case HypoCycloid:
+        return compute_hypo(t) ;
+
+        break;
+    case FutureCurve:
+        return compute_future_curve(t) ;
+    default:
+        break;
+    }
+    return QPoint(0 , 0);
+
+
+}
+QPointF RenderArea::compute_cycloid(float t){
+
+}
+QPointF RenderArea::compute_hygens(float t){
+
+}
+QPointF RenderArea::compute_hypo(float t){
+
+}
+QPointF RenderArea::compute_future_curve(float t){
+
+}
 
 void RenderArea::on_shape_changed(){
     switch (mShape) {
@@ -41,6 +79,8 @@ void RenderArea::on_shape_changed(){
         break;
     case HypoCycloid:
 
+        break;
+    case FutureCurve :
         break;
     default:
         break;
@@ -75,7 +115,7 @@ void RenderArea::paintEvent(QPaintEvent *event )  {
 
     float step = mIntervalLength / mStepCount ;
     for (float t =0 ; t < mIntervalLength; t+= step){
-        QPointF point = compute_astroid(t);
+        QPointF point = compute(t);
         QPoint pixel ;
         pixel.setX(point.x() * mScale + center.x());
         pixel.setY(point.y() * mScale + center.y());
