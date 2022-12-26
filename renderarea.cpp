@@ -99,8 +99,8 @@ void RenderArea::on_shape_changed(){
 
         break;
     case Line :
-        mScale=50;
-        mIntervalLength =1 ;
+        mScale=200;
+        mIntervalLength =2 ;
         mStepCount = 128;
         break;
     default:
@@ -133,6 +133,11 @@ void RenderArea::paintEvent(QPaintEvent *event )  {
 
     painter.drawRect(this->rect());
     QPoint center = this->rect().center();
+    QPointF prevPoint = compute(0);
+    QPoint prevPixel;
+    prevPixel.setX(prevPoint.x() * mScale + center.x());
+    prevPixel.setY(prevPoint.y() * mScale + center.y());
+
 
     float step = mIntervalLength / mStepCount ;
     for (float t =0 ; t < mIntervalLength; t+= step){
@@ -140,7 +145,9 @@ void RenderArea::paintEvent(QPaintEvent *event )  {
         QPoint pixel ;
         pixel.setX(point.x() * mScale + center.x());
         pixel.setY(point.y() * mScale + center.y());
-        painter.drawPoint(pixel);
+//        painter.drawPoint(pixel);
+        painter.drawLine(pixel , prevPixel);
+        prevPixel = pixel;
     }
 
 
