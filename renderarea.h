@@ -33,6 +33,14 @@ public:
     float scale() const {
         return mScale;
     }
+    void setInterval(float interval)  {
+        mIntervalLength = interval ;
+        repaint();
+
+    }
+    float interval() const {
+        return mIntervalLength;
+    }
 
 protected:
     void paintEvent(QPaintEvent *event ) Q_DECL_OVERRIDE ;
