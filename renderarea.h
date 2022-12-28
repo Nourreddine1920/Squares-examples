@@ -15,6 +15,12 @@ public:
     void setBackgroundColor(QColor color){
         mBackgroundColor=  color ; //setter
     }
+    void setLineColor(QColor color){
+        mShapeColor = color;
+    }//setter
+    QColor LineColor() const{
+        return mShapeColor ;
+    } //getter
     QColor getBackground() const{
         return mBackgroundColor ;
     } //getter
