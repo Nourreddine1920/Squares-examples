@@ -30,6 +30,8 @@ private slots:
 
     void on_spinInterval_valueChanged(double arg1);
 
+    void on_spinStepCount_valueChanged(double arg1);
+
 private:
     Ui::MainWindow *ui;
 private:

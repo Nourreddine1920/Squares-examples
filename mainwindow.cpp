@@ -19,6 +19,8 @@ MainWindow::~MainWindow()
 void MainWindow::update_ui(){
     this->ui->spinScale->setValue(this->ui->renderArea->scale());
     this->ui->spinInterval->setValue(this->ui->renderArea->interval());
+    this->ui->spinStepCount->setValue(this->ui->renderArea->count());
+
 
 
 }
@@ -104,6 +106,13 @@ void MainWindow::on_spinScale_valueChanged(double scale)
 void MainWindow::on_spinInterval_valueChanged(double interval)
 {
     this->ui->renderArea->setInterval(interval);
+
+}
+
+
+void MainWindow::on_spinStepCount_valueChanged(double count)
+{
+    this->ui->renderArea->setStepCount(count);
 
 }
 
