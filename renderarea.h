@@ -11,7 +11,7 @@ public:
     explicit RenderArea(QWidget *parent = nullptr);
     QSize minimumSizeHint() const Q_DECL_OVERRIDE;
     QSize sizeHint() const Q_DECL_OVERRIDE;
-    enum ShapeType {Astroid , Cycloid , HuygensCycloid , HypoCycloid , Line};
+    enum ShapeType {Astroid , Cycloid , HuygensCycloid , HypoCycloid , Line , Scale};
     void setBackgroundColor(QColor color){
         mBackgroundColor=  color ; //setter
     }
@@ -24,6 +24,14 @@ public:
     } //setter
     ShapeType shape() const {
         return mShape ;
+    }
+    void setScale(float scale)  {
+        mScale = scale ;
+        repaint();
+
+    }
+    float scale() const {
+        return mScale;
     }
 
 protected:

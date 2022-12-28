@@ -63,3 +63,11 @@ void MainWindow::on_btnLine_clicked()
 
 }
 
+
+void MainWindow::on_spinScale_valueChanged(double scale)
+{
+    this->ui->renderArea->setScale(scale);
+
+
+}
+
